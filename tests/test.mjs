@@ -4,6 +4,7 @@ import * as fs from "node:fs/promises";
 import { send } from "./rpc.mjs"
 import { assert, assert_true } from "./assert.mjs"
 import { spawn_process } from "./process.mjs"
+import { register_request_handler } from "./rpc.mjs"
 
 // See: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests
 const PATH_CHROME_OSX = "/Library/Google/Chrome/NativeMessagingHosts/net.downloadhelper.coapp.json";
@@ -59,6 +60,24 @@ await exec("fs.write", file.fd, "70,79,79");
 const content = await fs.readFile(file.path);
 assert("fs.write", content, "FOO");
 
+const url = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+
+const json = await exec("resolve", url);
+
+let total_ns = json.format.duration * 1000000;
+
+const on_tick = (timer_id, ns) => {
+  console.log("Timer:", timer_id, Math.floor(100 * ns / total_ns));
+};
+
+register_request_handler("consolidate_tick", on_tick);
+
+try {
+  await exec("consolidate", url, 3, 2, 42, "/tmp/js.mp4");
+  console.log("consolidate success");
+} catch (e) {
+  console.error(e);
+}
 
 // let file = await fs.open("/tmp/vdhcoapp-foo/test.txt");
 // console.log(file);
@@ -92,4 +111,4 @@ assert("fs.write", content, "FOO");
 
 console.log("DONE");
 
-// process.exit(0);
+process.exit(0);

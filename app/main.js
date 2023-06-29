@@ -24,6 +24,7 @@ if(process.argv[2]=="install")
 if(process.argv[2]=="uninstall")
 	require("./native-autoinstall").uninstall();
 
+
 require('./native-messaging');
 const logger = require('./logger');
 const rpc = require('./weh-rpc');
@@ -35,6 +36,8 @@ const converter = require('./converter');
 require('./file');
 require('./downloads');
 require('./request');
+
+require('./consolidate');
 
 const manifest = require('../package');
 const config = require('../config');

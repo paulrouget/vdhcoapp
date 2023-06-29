@@ -10,18 +10,17 @@ export function spawn_process(path) {
 
   child.stdin.setEncoding('utf-8');
 
-
   child.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`);
   });
 
   child.on('error', (code) => {
     console.error(`child process exited with error ${code}`);
-  }); 
+  });
 
   child.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
-  }); 
+  });
 
   let buffer = Buffer.alloc(0);
 
@@ -35,7 +34,7 @@ export function spawn_process(path) {
       if (buffer.length < len + 4) {
         return;
       }
-      if(len == 0) {
+      if (len == 0) {
         return;
       }
       let subs = buffer.toString("utf8", 4, len + 4);
