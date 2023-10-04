@@ -9,11 +9,7 @@ ManifestDPIAware true
 !define MAIN_APP_EXE "<%= package.binary_name %>.exe"
 !define ICON "icon.ico"
 !define LICENSE_TXT "LICENSE.txt"
-<% if (target.arch == "x86_64") { %>
-!define INSTALL_DIR "$PROGRAMFILES64\${APP_NAME}"
-<% } else { %>
 !define INSTALL_DIR "$PROGRAMFILES\${APP_NAME}"
-<% } %>
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
 !define REG_APP_PATH "Software\Microsoft\Windows\CurrentVersion\App Paths\${MAIN_APP_EXE}"
