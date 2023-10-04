@@ -1,5 +1,3 @@
-import open from 'open';
-
 const os = require("os");
 const path = require('path');
 const { spawn } = require('child_process');
@@ -176,10 +174,7 @@ rpc.listen({
   },
   // FIXME: test (partly because open result is untested)
   "play": (filePath) => {
-    return new Promise((resolve, _reject) => {
-      open(filePath);
-      resolve();
-    });
+    console.warn("play is not supported on this platform");
   },
   // In test suite
   "codecs": () => {
@@ -227,7 +222,7 @@ rpc.listen({
   },
   // In test suite, but just to check if not throwing.
   "open": (filePath, options = {}) => {
-    return open(filePath, options);
+    console.warn("open is not supported on this platform");
   },
 
 });
