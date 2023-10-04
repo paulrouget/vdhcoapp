@@ -1,4 +1,4 @@
-const fs = require('node:fs');
+const fs = require('fs');
 const path = require('path');
 const tmp = require('tmp');
 const rpc = require('./weh-rpc');

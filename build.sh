@@ -23,9 +23,9 @@ if ! [ -x "$(command -v node)" ]; then
   error "Node not installed"
 fi
 
-if [[ $(node -v) != v18.* ]]
+if [[ $(node -v) != v12.* ]]
 then
-  error "Wrong version of Node (expected v18)"
+  error "Wrong version of Node (expected v12)"
 fi
 
 if ! [ -x "$(command -v esbuild)" ]; then
@@ -199,7 +199,7 @@ if [ ! $skip_bundling == 1 ]; then
 
   log "Bundling Node binary with code"
   pkg $dist_dir/bundled.js \
-    --target node18-$target_os-$node_arch \
+    --target node12-$target_os-$node_arch \
     --output $target_dist_dir/$package_binary_name$exe_extension
 else
   log "Skipping bundling"

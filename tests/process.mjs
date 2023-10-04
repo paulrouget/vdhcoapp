@@ -1,5 +1,5 @@
 import { on_receive } from "./rpc.mjs";
-import { spawn } from "node:child_process";
+import { spawn } from "child_process";
 
 export function spawn_process(path, args = []) {
   const child = spawn(path, args);

@@ -1,6 +1,6 @@
 const dl = require('download');
 const path = require('path');
-const fs = require('node:fs');
+const fs = require('fs');
 const rpc = require('./weh-rpc');
 const os = require("os");
 
